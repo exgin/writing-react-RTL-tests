@@ -33,15 +33,15 @@ it('works when you click on the right arrow', function () {
 it('works when you click on the left arrow', function () {
   const { queryByTestId, queryByAltText } = render(<Carousel />);
 
-  // expect the first image to show | not the second
-  expect(queryByAltText('Photo by Richard Pasquarella on Unsplash')).toBeInTheDocument();
-  expect(queryByAltText('Photo by Pratik Patel on Unsplash')).not.toBeInTheDocument();
+  // expect the second image to show | not the first
+  expect(queryByAltText('Photo by Pratik Patel on Unsplash')).toBeInTheDocument();
+  expect(queryByAltText('Photo by Richard Pasquarella on Unsplash')).not.toBeInTheDocument();
 
   // move backwards in the carousel
   const leftArrow = queryByTestId('left-arrow');
   fireEvent.click(leftArrow);
 
-  // should move backwards to the last image, image 3
-  expect(queryByAltText('Photo by Richard Pasquarella on Unsplash')).not.toBeInTheDocument();
-  expect(queryByAltText('Photo by Josh Post on Unsplash')).toBeInTheDocument();
+  // should move backwards to the last image, image 1
+  expect(queryByAltText('Photo by Richard Pasquarella on Unsplash')).toBeInTheDocument();
+  expect(queryByAltText('Photo by Pratik Patel on Unsplash')).not.toBeInTheDocument();
 });
